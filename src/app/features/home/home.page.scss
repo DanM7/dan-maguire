@@ -1,0 +1,15 @@
+:host {
+  display: block;
+}
+
+.section-wrapper {
+  min-height: calc(100vh - 6rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-intro {
+  display: grid;
+  gap: 1.5rem;
+}

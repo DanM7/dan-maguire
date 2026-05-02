@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const appRoutes = [{\n  path: '',\n  loadChildren: () => import('./features/app-shell/app-shell.module').then(m => m.AppShellModule)\n}, {\n  path: '**',\n  redirectTo: ''\n}];","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

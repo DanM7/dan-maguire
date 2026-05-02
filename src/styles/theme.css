@@ -1,0 +1,23 @@
+:root {
+  --bg-default: #020617;
+  --bg-surface: rgba(15, 23, 42, 0.96);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border: rgba(148, 163, 184, 0.16);
+  --accent: #818cf8;
+  --accent-strong: #6366f1;
+  --surface-glow: rgba(99, 102, 241, 0.16);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--text-primary);
+  background-color: var(--bg-default);
+}
+
+* {
+  box-sizing: border-box;
+}
