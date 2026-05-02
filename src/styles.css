@@ -24,7 +24,9 @@ body {
   overflow-y: auto;
   min-height: 100vh;
   margin: 0;
-  background: radial-gradient(circle at top, rgba(99, 102, 241, 0.18), transparent 32%),
+  background:
+    radial-gradient(circle at top, rgba(99, 102, 241, 0.18), transparent 32%),
+    linear-gradient(135deg, rgba(56, 189, 248, 0.16) 0%, rgba(56, 189, 248, 0.02) 45%, transparent 70%),
     linear-gradient(180deg, #030712 0%, #070b16 100%);
 }
 

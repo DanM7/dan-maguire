@@ -7,8 +7,7 @@ import { Component } from '@angular/core';
     <footer class="border-t border-slate-800 bg-slate-950/95 py-6 text-slate-400">
       <div class="page-container flex items-end justify-between gap-4 text-sm leading-relaxed">
         <div>
-          <p>Designed for intentional engineering leadership, creative systems thinking, and polished digital experiences.</p>
-          <p class="mt-3">© 2026 Engineering + Creativity</p>
+          <p>© 2026 Engineering + Creativity</p>
         </div>
         <a
           href="https://www.linkedin.com/in/dan-maguire-b2016b87/"

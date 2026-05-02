@@ -11,7 +11,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
   template: `
     <div class="app-shell text-slate-100">
       <app-header></app-header>
-      <main class="page-container flex-1">
+      <main class="page-container flex-1 pt-28 sm:pt-24">
         <router-outlet></router-outlet>
       </main>
       <app-footer></app-footer>

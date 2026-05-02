@@ -1,22 +1,26 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [CommonModule, RouterLink, RouterLinkActive],
   template: `
-    <header class="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/95 backdrop-blur-md shadow-sm shadow-black/20">
+    <header class="fixed top-0 left-0 right-0 z-50 border-b border-slate-800 bg-slate-950/95 backdrop-blur-md shadow-sm shadow-black/20">
       <div class="page-container flex flex-col gap-4 py-4 md:flex-row md:items-center md:justify-between">
         <a class="text-xl font-semibold tracking-tight text-white" routerLink="/">Engineering + Creativity</a>
 
-        <nav class="flex flex-col gap-3 text-sm md:flex-row md:items-center md:gap-8">
+        <nav class="flex flex-wrap items-center justify-end gap-3 text-sm">
           <a *ngFor="let item of navItems"
             [routerLink]="item.path"
-            routerLinkActive="text-white underline decoration-brand-500 decoration-2"
+            [routerLinkActive]="item.path === '/projects' ? '' : 'text-white underline decoration-brand-500 decoration-2'"
             [routerLinkActiveOptions]="{ exact: item.exact }"
-            class="text-slate-300 transition hover:text-white hover:underline hover:decoration-slate-400"
+            [class]="
+              item.path === '/projects' && isProjectsRoute()
+                ? 'text-white underline decoration-brand-500 decoration-2'
+                : 'text-slate-300 transition hover:text-white hover:underline hover:decoration-slate-400'
+            "
             [ngClass]="item.emphasis ? 'font-semibold' : 'font-medium'"
           >
             {{ item.label }}
@@ -27,6 +31,13 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   `
 })
 export class HeaderComponent {
+  constructor(private router: Router) {}
+
+  isProjectsRoute(): boolean {
+    const path = this.router.url.split('?')[0];
+    return path === '/projects' || path.startsWith('/insights');
+  }
+
   navItems = [
     { label: 'About', path: '/about', exact: true, emphasis: false },
     { label: 'Experience', path: '/experience', exact: true, emphasis: true },
