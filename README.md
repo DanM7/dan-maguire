@@ -35,3 +35,22 @@ A principal-level personal site built with Angular 20 and Tailwind CSS. The desi
 ## Design Intent
 
 This site is built to communicate engineering discipline and creative craft without using the word “portfolio” in the visible UI.
+
+## Link Behavior Standard
+
+All links on this site should follow this rule:
+
+1. Use `routerLink` for internal Angular routes so navigation stays in the single-page app and preserves SPA behavior.
+2. Use `href` for external URLs, and open them with `target="_blank"` plus `rel="noopener noreferrer"`.
+
+Preferred pattern:
+
+```html
+<!-- Internal route -->
+<a [routerLink]="'/insights/engineering-cultures'">Engineering Cultures</a>
+
+<!-- External destination -->
+<a href="https://example.com" target="_blank" rel="noopener noreferrer">External Link</a>
+```
+
+This is especially important for the Projects cards where internal insight links should not trigger a full page reload.

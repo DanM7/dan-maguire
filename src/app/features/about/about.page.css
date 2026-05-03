@@ -1,0 +1,12 @@
+.about-headshot-wrap {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto 1.75rem auto;
+}
+
+img.about-headshot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}

@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { SectionHeaderComponent } from '../../shared/components/section-header/section-header.component';
 import { CardComponent } from '../../shared/components/card/card.component';
 
 @Component({
   selector: 'app-projects-page',
   standalone: true,
-  imports: [CommonModule, SectionHeaderComponent, CardComponent],
+  imports: [CommonModule, RouterLink, SectionHeaderComponent, CardComponent],
   styleUrls: ['./projects.page.scss'],
   template: `
     <section class="section-wrapper">
@@ -25,26 +26,47 @@ import { CardComponent } from '../../shared/components/card/card.component';
         </div>
 
         <div class="grid gap-6 mt-6">
-          <a
-            *ngFor="let project of filteredProjects"
-            [href]="project.link"
-            [target]="project.link.startsWith('http') ? '_blank' : null"
-            [rel]="project.link.startsWith('http') ? 'noopener noreferrer' : null"
-            class="block no-underline text-left transition duration-200 hover:opacity-95"
-          >
-            <app-card [eyebrow]="project.categoryLabel" [title]="project.title" [description]="project.description">
-              <div *ngIf="project.category !== 'insights'" class="mt-6 grid gap-4 lg:grid-cols-[0.65fr_0.35fr]">
-                <div class="h-44 rounded-3xl border border-slate-800 bg-slate-950/90 p-4 text-slate-500 flex items-center justify-center text-sm">Screenshot placeholder</div>
-                <div class="space-y-4 text-slate-300">
-                  <div>
-                    <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Tech stack</p>
-                    <p class="mt-2 text-slate-300">{{ project.stack }}</p>
+          <ng-container *ngFor="let project of filteredProjects">
+            <a
+              *ngIf="isInternalLink(project.link)"
+              [routerLink]="project.link"
+              class="block no-underline text-left transition duration-200 hover:opacity-95"
+            >
+              <app-card [eyebrow]="project.categoryLabel" [title]="project.title" [description]="project.description">
+                <div *ngIf="project.category !== 'insights'" class="mt-6 grid gap-4 lg:grid-cols-[0.65fr_0.35fr]">
+                  <div class="h-44 rounded-3xl border border-slate-800 bg-slate-950/90 p-4 text-slate-500 flex items-center justify-center text-sm">Screenshot placeholder</div>
+                  <div class="space-y-4 text-slate-300">
+                    <div>
+                      <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Tech stack</p>
+                      <p class="mt-2 text-slate-300">{{ project.stack }}</p>
+                    </div>
+                    <span class="inline-flex items-center gap-2 text-sm font-semibold text-brand-400 hover:text-brand-300">View details →</span>
                   </div>
-                  <span class="inline-flex items-center gap-2 text-sm font-semibold text-brand-400 hover:text-brand-300">View details →</span>
                 </div>
-              </div>
-            </app-card>
-          </a>
+              </app-card>
+            </a>
+
+            <a
+              *ngIf="!isInternalLink(project.link)"
+              [href]="project.link"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block no-underline text-left transition duration-200 hover:opacity-95"
+            >
+              <app-card [eyebrow]="project.categoryLabel" [title]="project.title" [description]="project.description">
+                <div *ngIf="project.category !== 'insights'" class="mt-6 grid gap-4 lg:grid-cols-[0.65fr_0.35fr]">
+                  <div class="h-44 rounded-3xl border border-slate-800 bg-slate-950/90 p-4 text-slate-500 flex items-center justify-center text-sm">Screenshot placeholder</div>
+                  <div class="space-y-4 text-slate-300">
+                    <div>
+                      <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Tech stack</p>
+                      <p class="mt-2 text-slate-300">{{ project.stack }}</p>
+                    </div>
+                    <span class="inline-flex items-center gap-2 text-sm font-semibold text-brand-400 hover:text-brand-300">View details →</span>
+                  </div>
+                </div>
+              </app-card>
+            </a>
+          </ng-container>
         </div>
 
         <p *ngIf="filteredProjects.length === 0" class="mt-10 text-slate-400">No projects match this category yet.</p>
@@ -185,6 +207,10 @@ export class ProjectsPageComponent {
     return this.activeFilter === 'all'
       ? this.projects
       : this.projects.filter(project => project.category === this.activeFilter);
+  }
+
+  isInternalLink(link: string): boolean {
+    return link.startsWith('/');
   }
 
   setFilter(value: string) {
