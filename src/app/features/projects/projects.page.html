@@ -1,0 +1,51 @@
+<section class="section-wrapper">
+  <div class="page-container">
+    <app-section-header label="PROJECTS" title="Creative + technical showcase" subtitle="A curated collection of games, art, comics, music, writing, and experimental systems — built to explore interaction, storytelling, and creative technology." />
+
+    <div class="filter-bar">
+      <button type="button" class="filter-button" [ngClass]="{ 'active': activeFilter === 'all' }" (click)="setFilter('all')">All</button>
+      <button type="button" class="filter-button" [ngClass]="{ 'active': activeFilter === 'games' }" (click)="setFilter('games')">Games</button>
+      <button type="button" class="filter-button" [ngClass]="{ 'active': activeFilter === 'art' }" (click)="setFilter('art')">Art</button>
+      <button type="button" class="filter-button" [ngClass]="{ 'active': activeFilter === 'insights' }" (click)="setFilter('insights')">Insights</button>
+      <button type="button" class="filter-button" [ngClass]="{ 'active': activeFilter === 'comics' }" (click)="setFilter('comics')">Comics</button>
+      <button type="button" class="filter-button" [ngClass]="{ 'active': activeFilter === 'music' }" (click)="setFilter('music')">Music</button>
+      <button type="button" class="filter-button" [ngClass]="{ 'active': activeFilter === 'writing' }" (click)="setFilter('writing')">Writing</button>
+      <button type="button" class="filter-button" [ngClass]="{ 'active': activeFilter === 'experiments' }" (click)="setFilter('experiments')">Experiments</button>
+    </div>
+
+    <div class="grid gap-6 mt-6">
+      <a
+        *ngFor="let project of filteredProjects"
+        [routerLink]="['/projects', project.slug]"
+        class="project-card-link block no-underline text-left transition duration-200 hover:opacity-95"
+      >
+        <span *ngIf="project.pinned" class="project-card-pin" aria-hidden="true">★</span>
+        <app-card [eyebrow]="project.category" [title]="project.title" [description]="project.summary">
+          <div class="mt-6 grid gap-4 lg:grid-cols-[0.65fr_0.35fr]">
+            <img
+              *ngIf="project.screenshot"
+              [src]="project.screenshot"
+              [alt]="project.title + ' screenshot'"
+              class="h-44 w-full rounded-3xl border border-slate-800 object-cover object-top bg-slate-950/90"
+              loading="lazy"
+            />
+            <div
+              *ngIf="!project.screenshot"
+              class="h-44 rounded-3xl border border-slate-800 bg-slate-950/90 p-4 text-slate-500 flex items-center justify-center text-sm"
+            >
+              Screenshot placeholder
+            </div>
+            <div class="space-y-4 text-slate-300">
+              <div>
+                <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Tech stack</p>
+                <p class="mt-2 text-slate-300">{{ techStackLine(project) }}</p>
+              </div>
+            </div>
+          </div>
+        </app-card>
+      </a>
+    </div>
+
+    <p *ngIf="filteredProjects.length === 0" class="mt-10 text-slate-400">No projects match this category yet.</p>
+  </div>
+</section>

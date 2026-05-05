@@ -5,6 +5,7 @@ import { HomePageComponent } from '../home/home.page';
 import { AboutPageComponent } from '../about/about.page';
 import { ExperiencePageComponent } from '../experience/experience.page';
 import { ProjectsPageComponent } from '../projects/projects.page';
+import { ProjectDetailPageComponent } from '../projects/project-detail.page';
 import { ContactPageComponent } from '../contact/contact.page';
 import { EngineeringCulturesPageComponent } from '../insights/engineering-cultures/engineering-cultures.page';
 import { ProductEngineeringTeamsPageComponent } from '../insights/28-product-engineering-teams/28-product-engineering-teams.page';
@@ -24,6 +25,7 @@ import { TinkeringWithASideProjectPageComponent } from '../insights/tinkering-wi
     AboutPageComponent,
     ExperiencePageComponent,
     ProjectsPageComponent,
+    ProjectDetailPageComponent,
     ContactPageComponent,
     RouterModule.forChild([
       {
@@ -34,6 +36,7 @@ import { TinkeringWithASideProjectPageComponent } from '../insights/tinkering-wi
           { path: 'about', component: AboutPageComponent },
           { path: 'experience', component: ExperiencePageComponent },
           { path: 'projects', component: ProjectsPageComponent },
+          { path: 'projects/:slug', component: ProjectDetailPageComponent },
           { path: 'contact', component: ContactPageComponent },
           { path: 'insights/engineering-cultures', component: EngineeringCulturesPageComponent },
           { path: 'insights/28-product-engineering-teams', component: ProductEngineeringTeamsPageComponent },

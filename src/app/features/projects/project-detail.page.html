@@ -1,0 +1,81 @@
+<section class="section-wrapper" *ngIf="project as p">
+  <div class="page-container">
+    <p class="mb-6">
+      <a
+        routerLink="/projects"
+        class="text-sm font-medium text-brand-400 transition hover:text-brand-300"
+      >
+        ← Back to Projects
+      </a>
+    </p>
+
+    <header class="mb-10 max-w-3xl">
+      <p class="text-xs uppercase tracking-[0.32em] text-slate-400">{{ p.category }}</p>
+      <h1 class="mt-3 text-3xl font-semibold text-white sm:text-4xl">{{ p.title }}</h1>
+    </header>
+
+    <article class="section-card p-6 sm:p-8 max-w-3xl">
+      <div class="space-y-4 text-slate-300 leading-7">
+        <p *ngFor="let block of descriptionParagraphs(p)">{{ block }}</p>
+      </div>
+
+      <div class="mt-10">
+        <h2 class="text-xs uppercase tracking-[0.32em] text-slate-400">Screenshot gallery</h2>
+        <div *ngIf="galleryImages(p).length > 0" class="project-detail-gallery mt-4">
+          <img
+            *ngFor="let src of galleryImages(p)"
+            [src]="src"
+            [alt]="p.title + ' screenshot'"
+            class="project-detail-gallery__img"
+            loading="lazy"
+          />
+        </div>
+        <div
+          *ngIf="galleryImages(p).length === 0"
+          class="mt-4 flex h-48 items-center justify-center rounded-3xl border border-slate-800 bg-slate-950/90 text-sm text-slate-500"
+        >
+          Screenshots coming soon
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <h2 class="text-xs uppercase tracking-[0.32em] text-slate-400">Tech stack</h2>
+        <p class="mt-3 text-slate-300 leading-7">{{ techStackLine(p) }}</p>
+      </div>
+
+      <div *ngIf="p.features" class="mt-10">
+        <h2 class="text-xs uppercase tracking-[0.32em] text-slate-400">Features</h2>
+        <p class="mt-3 text-slate-300 leading-7 whitespace-pre-line">{{ p.features }}</p>
+      </div>
+
+      <div *ngIf="p.challenges" class="mt-10">
+        <h2 class="text-xs uppercase tracking-[0.32em] text-slate-400">Challenges</h2>
+        <p class="mt-3 text-slate-300 leading-7 whitespace-pre-line">{{ p.challenges }}</p>
+      </div>
+
+      <div *ngIf="p.futureImprovements" class="mt-10">
+        <h2 class="text-xs uppercase tracking-[0.32em] text-slate-400">Future improvements</h2>
+        <p class="mt-3 text-slate-300 leading-7 whitespace-pre-line">{{ p.futureImprovements }}</p>
+      </div>
+
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a
+          *ngIf="p.insightPath"
+          [routerLink]="p.insightPath"
+          class="inline-flex items-center gap-2 rounded-full border border-brand-500/40 bg-brand-500/10 px-5 py-2 text-sm font-semibold text-brand-300 transition hover:border-brand-400 hover:bg-brand-500/20"
+        >
+          Read full insight →
+        </a>
+        <a
+          *ngIf="hasExternalLink(p)"
+          [href]="p.link"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-full border border-slate-600 bg-slate-900/80 px-5 py-2 text-sm font-semibold text-slate-200 transition hover:border-slate-500 hover:text-white"
+        >
+          Open live site ↗
+        </a>
+      </div>
+    </article>
+  </div>
+</section>
