@@ -1,0 +1,11 @@
+# Angular SPA: deep links and refresh must serve index.html (client routing).
+# https://docs.netlify.com/routing/redirects/rewrites-proxies/
+
+[build]
+  command = "npm run build"
+  publish = "dist/portfolio-principal"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
