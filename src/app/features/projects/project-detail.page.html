@@ -19,6 +19,17 @@
         <p *ngFor="let block of descriptionParagraphs(p)">{{ block }}</p>
       </div>
 
+      <div *ngIf="hasExternalLink(p)" class="mt-10">
+        <a
+          [href]="p.link"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-full bg-brand-500 px-8 py-3.5 text-base font-semibold text-slate-950 shadow-lg shadow-brand-500/25 transition hover:bg-brand-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400"
+        >
+          Open live site ↗
+        </a>
+      </div>
+
       <div class="mt-10">
         <h2 class="text-xs uppercase tracking-[0.32em] text-slate-400">Screenshot gallery</h2>
         <div *ngIf="galleryImages(p).length > 0" class="project-detail-gallery mt-4">
@@ -58,22 +69,12 @@
         <p class="mt-3 text-slate-300 leading-7 whitespace-pre-line">{{ p.futureImprovements }}</p>
       </div>
 
-      <div class="mt-10 flex flex-wrap gap-4">
+      <div *ngIf="p.insightPath" class="mt-10 flex flex-wrap gap-4">
         <a
-          *ngIf="p.insightPath"
           [routerLink]="p.insightPath"
           class="inline-flex items-center gap-2 rounded-full border border-brand-500/40 bg-brand-500/10 px-5 py-2 text-sm font-semibold text-brand-300 transition hover:border-brand-400 hover:bg-brand-500/20"
         >
           Read full insight →
-        </a>
-        <a
-          *ngIf="hasExternalLink(p)"
-          [href]="p.link"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 rounded-full border border-slate-600 bg-slate-900/80 px-5 py-2 text-sm font-semibold text-slate-200 transition hover:border-slate-500 hover:text-white"
-        >
-          Open live site ↗
         </a>
       </div>
     </article>

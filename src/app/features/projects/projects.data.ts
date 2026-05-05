@@ -162,13 +162,28 @@ export const PROJECTS: Project[] = [
     category: 'MUSIC',
     title: 'MPC Rhythm Pad',
     summary:
-      "I wanted a simple, free MPC I could experiment with, and nothing out there felt right—so I built one. I’m not trying to be DJ Premier or Pete Rock, but this tool makes it easy to sketch rhythms quickly, and I’ve already found myself using it as a backdrop while I play guitar. It’s a small project, but a fun one that blends engineering with the kind of creative tinkering I enjoy.",
+      "I wanted a simple, free MPC I could experiment with, and nothing out there felt right... So I built one. I’m no DJ Premier or Pete Rock, but this tool makes it easy to sketch rhythms quickly, and I’ve already found myself using it as a backdrop while I play guitar. It’s a small project, but a fun one that blends engineering with the kind of creative tinkering I enjoy.",
     techStack: ['Angular', 'TypeScript', 'Web Audio API', 'CSS'],
-    screenshot: '/assets/mpc.png',
+    screenshot: '/assets/mpc_screenshot_01.png',
     longDescription:
-      "I wanted a simple, free MPC I could experiment with, and nothing out there felt right—so I built one. I’m not trying to be DJ Premier or Pete Rock, but this tool makes it easy to sketch rhythms quickly, and I’ve already found myself using it as a backdrop while I play guitar. It’s a small project, but a fun one that blends engineering with the kind of creative tinkering I enjoy.",
-    gallery: [],
+      "I wanted a simple, free MPC I could experiment with, and nothing out there felt right... So I built one. I’m no DJ Premier or Pete Rock, but this tool makes it easy to sketch rhythms quickly, and I’ve already found myself using it as a backdrop while I play guitar. It’s a small project, but a fun one that blends engineering with the kind of creative tinkering I enjoy.",
+    gallery: ['/assets/mpc_screenshot_02.png'],
     link: 'https://mpc.dan-maguire.com'
+  },
+  {
+    slug: 'flash-cards',
+    filterCategory: 'experiments',
+    category: 'EXPERIMENTS',
+    title: 'Flash‑Cards',
+    summary:
+      'A voice‑driven flash‑card engine for sight words, math, and vocabulary. It listens to spoken answers, interprets them with simple NLP, and tracks progress across subjects and profiles. Star Wars–themed encouragement adds a layer of fun to keep kids engaged.',
+    techStack: ['Web Speech API', 'TypeScript', 'Angular'],
+    screenshot: null,
+    longDescription:
+      'This project started as a way to help my son Bowen practice sight words and math in a format that works for him. The system uses speech recognition and lightweight NLP to evaluate his answers, then reinforces progress with Star Wars–themed encouragement that keeps him engaged. It’s intentionally built as a data‑driven flash‑card engine so I can extend it into math, vocabulary, and other subjects without rewriting the core logic.',
+    gallery: [],
+    link: 'https://flash-cards.dan-maguire.com',
+    pinned: true
   },
   {
     slug: 'technical-storytelling-framework',
@@ -181,20 +196,6 @@ export const PROJECTS: Project[] = [
     screenshot: null,
     longDescription:
       'A narrative framework for documenting engineering work, product stories, and creative process in a clear, engaging format.',
-    gallery: [],
-    link: 'https://example.com'
-  },
-  {
-    slug: 'creative-systems-probe',
-    filterCategory: 'experiments',
-    category: 'EXPERIMENTS',
-    title: 'Creative systems probe',
-    summary:
-      'An experimental interface that explores generative workflows, data visualization, and interaction design.',
-    techStack: ['D3', 'Web Components', 'Serverless'],
-    screenshot: null,
-    longDescription:
-      'An experimental interface that explores generative workflows, data visualization, and interaction design.',
     gallery: [],
     link: 'https://example.com'
   }
