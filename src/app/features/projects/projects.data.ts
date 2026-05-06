@@ -160,15 +160,44 @@ export const PROJECTS: Project[] = [
     slug: 'mpc-rhythm-pad',
     filterCategory: 'music',
     category: 'MUSIC',
-    title: 'MPC Rhythm Pad',
+    title: 'MPC Pad Sampler',
     summary:
-      "I wanted a simple, free MPC I could experiment with, and nothing out there felt right... So I built one. I’m no DJ Premier or Pete Rock, but this tool makes it easy to sketch rhythms quickly, and I’ve already found myself using it as a backdrop while I play guitar. It’s a small project, but a fun one that blends engineering with the kind of creative tinkering I enjoy.",
-    techStack: ['Angular', 'TypeScript', 'Web Audio API', 'CSS'],
+      'I wanted a simple, free MPC I could experiment with, and nothing out there felt right... So I built one. I’m no DJ Premier or Pete Rock, but this tool makes it easy to sketch rhythms quickly, and I’ve already found myself using it as a backdrop while I play guitar. It’s a small project, but a fun one that blends engineering with the kind of creative tinkering I enjoy.',
+    techStack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Zustand', 'Tone.js'],
     screenshot: '/assets/mpc_screenshot_01.png',
-    longDescription:
-      "I wanted a simple, free MPC I could experiment with, and nothing out there felt right... So I built one. I’m no DJ Premier or Pete Rock, but this tool makes it easy to sketch rhythms quickly, and I’ve already found myself using it as a backdrop while I play guitar. It’s a small project, but a fun one that blends engineering with the kind of creative tinkering I enjoy.",
+    longDescription: `MPC Pad Sampler is a browser‑based drum pad and sketch sequencer inspired by classic MPC workflows. It’s built for a mobile‑first, tap‑to‑play flow: unlock audio with a single gesture, then perform, sequence, and capture patterns without leaving the page.
+
+The app runs as a React + TypeScript single‑page application, bundled with Vite for fast iteration and lean builds. Tailwind CSS provides the “studio hardware” visual language—panel chrome, LED‑style pads, and a scrollable shell without visual noise. Zustand manages global state (pads, grid layout, transport, sequencer steps, recording buffers, saved patterns) so UI and audio stay tightly synchronized. Tone.js powers the audio engine: Transport for timing, Player nodes for sample playback with caching and invalidation, and a PolySynth fallback for melodic pads.
+
+The instrument behaves like a hybrid pad surface and groove box. Sixteen pads adapt to a configurable grid with add/remove/reorderable rows. Sound packs swap the sample set; early pads act as drum lanes while later pads can serve as quick melodic voices. Patterns capture pad configuration, tempo, and grid shape for easy recall.
+
+The sequencer supports up to sixteen steps, transport controls, and a step strip for navigation. Record mode captures pad hits into the active step as the loop advances. You can clear steps, reset patterns, or reshape the sequence by adding, removing, or reordering steps. Pad edit mode provides a deeper workflow for user samples—capture from the device, trim via waveform, apply denoise and loudness shaping, and preview before committing—so a pad can move from rough idea to polished one‑shot without leaving the browser.
+
+An \`api/\` folder outlines Azure‑style handlers for a future cloud‑backed version, but today the experience is fully client‑first with patterns stored in local state.`,
     gallery: ['/assets/mpc_screenshot_02.png'],
-    link: 'https://mpc.dan-maguire.com'
+    link: 'https://mpc.dan-maguire.com',
+    futureImprovements: `Near‑term
+- PWA / offline shell
+- Export (audio stems, loop renders, MIDI)
+- Smarter capture (quantize, step input, timing assist)
+- Per‑step nuance (velocity, probability, micro‑timing)
+- Undo history
+- Keyboard shortcuts (desktop workflow)
+
+Mid‑term
+- Durable cloud‑backed samples + pattern sync
+- MIDI I/O (pads, transport, clock sync)
+- Pack authoring (ZIP/folder import, pad assignment)
+- Pad‑level envelopes + pitch
+- Global mixer (volume, pan, mute/solo)
+
+Long‑term
+- Sample slicing (chop mode)
+- Pattern chaining / song mode
+- Pad macros / performance FX
+- Shareable links
+- Cloud pattern library
+- Performance recording`
   },
   {
     slug: 'flash-cards',
@@ -178,10 +207,10 @@ export const PROJECTS: Project[] = [
     summary:
       'A voice‑driven flash‑card engine for sight words, math, and vocabulary. It listens to spoken answers, interprets them with simple NLP, and tracks progress across subjects and profiles. Star Wars–themed encouragement adds a layer of fun to keep kids engaged.',
     techStack: ['Web Speech API', 'TypeScript', 'Angular'],
-    screenshot: null,
+    screenshot: '/assets/flashcards_screenshot_01.png',
     longDescription:
       'This project started as a way to help my son Bowen practice sight words and math in a format that works for him. The system uses speech recognition and lightweight NLP to evaluate his answers, then reinforces progress with Star Wars–themed encouragement that keeps him engaged. It’s intentionally built as a data‑driven flash‑card engine so I can extend it into math, vocabulary, and other subjects without rewriting the core logic.',
-    gallery: [],
+    gallery: ['/assets/flashcards_screenshot_02.png'],
     link: 'https://flash-cards.dan-maguire.com',
     pinned: true
   },

@@ -49,6 +49,11 @@
         </div>
       </div>
 
+      <div *ngIf="p.futureImprovements" class="mt-10">
+        <h2 class="text-xs uppercase tracking-[0.32em] text-slate-400">Future Development</h2>
+        <p class="mt-3 text-slate-300 leading-7 whitespace-pre-line">{{ p.futureImprovements }}</p>
+      </div>
+
       <div class="mt-10">
         <h2 class="text-xs uppercase tracking-[0.32em] text-slate-400">Tech stack</h2>
         <p class="mt-3 text-slate-300 leading-7">{{ techStackLine(p) }}</p>
@@ -62,11 +67,6 @@
       <div *ngIf="p.challenges" class="mt-10">
         <h2 class="text-xs uppercase tracking-[0.32em] text-slate-400">Challenges</h2>
         <p class="mt-3 text-slate-300 leading-7 whitespace-pre-line">{{ p.challenges }}</p>
-      </div>
-
-      <div *ngIf="p.futureImprovements" class="mt-10">
-        <h2 class="text-xs uppercase tracking-[0.32em] text-slate-400">Future improvements</h2>
-        <p class="mt-3 text-slate-300 leading-7 whitespace-pre-line">{{ p.futureImprovements }}</p>
       </div>
 
       <div *ngIf="p.insightPath" class="mt-10 flex flex-wrap gap-4">
