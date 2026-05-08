@@ -35,7 +35,7 @@ export class HeaderComponent {
 
   isProjectsRoute(): boolean {
     const path = this.router.url.split('?')[0];
-    return path === '/projects' || path.startsWith('/projects/') || path.startsWith('/insights');
+    return path === '/projects' || path.startsWith('/projects/');
   }
 
   navItems = [

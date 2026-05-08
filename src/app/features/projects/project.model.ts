@@ -22,7 +22,7 @@ export interface Project {
   gallery: string[];
   /** External URL (opens in a new tab from the detail page when set). */
   link?: string;
-  /** In-app insight route (e.g. `/insights/engineering-cultures`). */
+  /** In-app insight route (e.g. `/projects/insights/engineering-cultures`). */
   insightPath?: string;
   pinned?: boolean;
   features?: string;

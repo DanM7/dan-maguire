@@ -1,39 +1,26 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
-import { SectionHeaderComponent } from '../../shared/components/section-header/section-header.component';
-import { CardComponent } from '../../shared/components/card/card.component';
-import { Project } from './project.model';
-import { PROJECTS } from './projects.data';
+import { ProjectsHeaderComponent } from './projects-header.component';
+import { ProjectsSummariesComponent } from './projects-summaries.component';
+import { ProjectsStatusComponent } from './projects-status.component';
+import { ProjectsTab, ProjectsTabsComponent } from './projects-tabs.component';
 
 @Component({
   selector: 'app-projects-page',
   standalone: true,
-  imports: [CommonModule, RouterLink, SectionHeaderComponent, CardComponent],
-  styleUrls: ['./projects.page.scss'],
+  imports: [
+    CommonModule,
+    ProjectsHeaderComponent,
+    ProjectsTabsComponent,
+    ProjectsSummariesComponent,
+    ProjectsStatusComponent
+  ],
   templateUrl: './projects.page.html'
 })
 export class ProjectsPageComponent {
-  activeFilter = 'all';
+  activeTab: ProjectsTab = 'summaries';
 
-  projects: Project[] = PROJECTS;
-
-  get filteredProjects(): Project[] {
-    if (this.activeFilter === 'all') {
-      return [
-        ...this.projects.filter(project => project.pinned),
-        ...this.projects.filter(project => !project.pinned)
-      ];
-    }
-
-    return this.projects.filter(project => project.filterCategory === this.activeFilter);
-  }
-
-  techStackLine(project: Project): string {
-    return project.techStack.join(' · ');
-  }
-
-  setFilter(value: string) {
-    this.activeFilter = value;
+  setTab(tab: ProjectsTab): void {
+    this.activeTab = tab;
   }
 }

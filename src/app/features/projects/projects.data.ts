@@ -13,7 +13,7 @@ export const PROJECTS: Project[] = [
     longDescription:
       'A look at how standards, patterns, and mentoring create engineering cultures that sustain quality across teams and time.',
     gallery: [],
-    insightPath: '/insights/engineering-cultures',
+    insightPath: '/projects/insights/engineering-cultures',
     pinned: true
   },
   {
@@ -28,7 +28,7 @@ export const PROJECTS: Project[] = [
     longDescription:
       'How to support a large portfolio of teams with alignment, shared standards, and practical governance without micromanagement.',
     gallery: [],
-    insightPath: '/insights/28-product-engineering-teams'
+    insightPath: '/projects/insights/28-product-engineering-teams'
   },
   {
     slug: 'frameworks-patterns-processes',
@@ -42,7 +42,7 @@ export const PROJECTS: Project[] = [
     longDescription:
       'Reusable approaches to make quality the default and improve consistency across engineering teams.',
     gallery: [],
-    insightPath: '/insights/frameworks-patterns-processes'
+    insightPath: '/projects/insights/frameworks-patterns-processes'
   },
   {
     slug: 'cross-team-engineering-practices',
@@ -56,7 +56,7 @@ export const PROJECTS: Project[] = [
     longDescription:
       'Modernization and platform alignment patterns that improve outcomes across multiple engineering organizations.',
     gallery: [],
-    insightPath: '/insights/cross-team-engineering-practices'
+    insightPath: '/projects/insights/cross-team-engineering-practices'
   },
   {
     slug: 'engineering-and-creativity',
@@ -70,7 +70,7 @@ export const PROJECTS: Project[] = [
     longDescription:
       'How technical craft and creative thinking combine to shape better systems and stronger problem framing.',
     gallery: [],
-    insightPath: '/insights/engineering-and-creativity'
+    insightPath: '/projects/insights/engineering-and-creativity'
   },
   {
     slug: 'things-that-feel-good-to-use',
@@ -84,7 +84,7 @@ export const PROJECTS: Project[] = [
     longDescription:
       'Small design decisions, long-term clarity, and developer-friendly systems that make products durable and intuitive.',
     gallery: [],
-    insightPath: '/insights/things-that-feel-good-to-use'
+    insightPath: '/projects/insights/things-that-feel-good-to-use'
   },
   {
     slug: 'engineering-as-storytelling',
@@ -98,7 +98,7 @@ export const PROJECTS: Project[] = [
     longDescription:
       'How narrative reasoning can align teams, clarify complexity, and support technical strategy.',
     gallery: [],
-    insightPath: '/insights/engineering-as-storytelling'
+    insightPath: '/projects/insights/engineering-as-storytelling'
   },
   {
     slug: 'patterns-that-help-me-succeed',
@@ -112,7 +112,22 @@ export const PROJECTS: Project[] = [
     longDescription:
       'Decision frameworks, habits, and patterns that have consistently guided execution at senior technical levels.',
     gallery: [],
-    insightPath: '/insights/patterns-that-help-me-succeed'
+    insightPath: '/projects/insights/patterns-that-help-me-succeed'
+  },
+  {
+    slug: 'personal-sdlc',
+    filterCategory: 'insights',
+    category: 'INSIGHTS',
+    title: 'A Personal SDLC That Scales With My Creativity',
+    summary:
+      "I stopped treating personal projects as 'done' and built a lifecycle that reflects how software actually evolves. This SDLC — from Idea to Legacy — helps me manage energy, momentum, and long‑term maintenance with the same intentionality I apply to enterprise systems, but optimized for how I build.",
+    techStack: ['Personal Workflow', 'Software Lifecycle'],
+    screenshot: null,
+    longDescription:
+      "I stopped treating personal projects as 'done' and built a lifecycle that reflects how software actually evolves. This SDLC — from Idea to Legacy — helps me manage energy, momentum, and long‑term maintenance with the same intentionality I apply to enterprise systems, but optimized for how I build.",
+    gallery: [],
+    insightPath: '/projects/insights/personal-sdlc',
+    pinned: true
   },
   {
     slug: 'interactive-system-builder',
@@ -171,9 +186,7 @@ The app runs as a React + TypeScript single‑page application, bundled with Vit
 
 The instrument behaves like a hybrid pad surface and groove box. Sixteen pads adapt to a configurable grid with add/remove/reorderable rows. Sound packs swap the sample set; early pads act as drum lanes while later pads can serve as quick melodic voices. Patterns capture pad configuration, tempo, and grid shape for easy recall.
 
-The sequencer supports up to sixteen steps, transport controls, and a step strip for navigation. Record mode captures pad hits into the active step as the loop advances. You can clear steps, reset patterns, or reshape the sequence by adding, removing, or reordering steps. Pad edit mode provides a deeper workflow for user samples—capture from the device, trim via waveform, apply denoise and loudness shaping, and preview before committing—so a pad can move from rough idea to polished one‑shot without leaving the browser.
-
-An \`api/\` folder outlines Azure‑style handlers for a future cloud‑backed version, but today the experience is fully client‑first with patterns stored in local state.`,
+The sequencer supports up to sixteen steps, transport controls, and a step strip for navigation. Record mode captures pad hits into the active step as the loop advances. You can clear steps, reset patterns, or reshape the sequence by adding, removing, or reordering steps. Pad edit mode provides a deeper workflow for user samples—capture from the device, trim via waveform, apply denoise and loudness shaping, and preview before committing—so a pad can move from rough idea to polished one‑shot without leaving the browser.`,
     gallery: ['/assets/mpc_screenshot_02.png'],
     link: 'https://mpc.dan-maguire.com',
     futureImprovements: `Near‑term
@@ -203,13 +216,13 @@ Long‑term
     slug: 'flash-cards',
     filterCategory: 'experiments',
     category: 'EXPERIMENTS',
-    title: 'Flash‑Cards',
+    title: 'Flash Cards',
     summary:
       'A voice‑driven flash‑card engine for sight words, math, and vocabulary. It listens to spoken answers, interprets them with simple NLP, and tracks progress across subjects and profiles. Star Wars–themed encouragement adds a layer of fun to keep kids engaged.',
     techStack: ['Web Speech API', 'TypeScript', 'Angular'],
     screenshot: '/assets/flashcards_screenshot_01.png',
     longDescription:
-      'This project started as a way to help my son Bowen practice sight words and math in a format that works for him. The system uses speech recognition and lightweight NLP to evaluate his answers, then reinforces progress with Star Wars–themed encouragement that keeps him engaged. It’s intentionally built as a data‑driven flash‑card engine so I can extend it into math, vocabulary, and other subjects without rewriting the core logic.',
+      'This project started as a way to help my son practice sight words and math in a format that works for him. The system uses speech recognition and lightweight NLP to evaluate his answers, then reinforces progress with Star Wars–themed encouragement that keeps him engaged. It’s intentionally built as a data‑driven flash‑card engine so I can extend it into math, vocabulary, and other subjects without rewriting the core logic.',
     gallery: ['/assets/flashcards_screenshot_02.png'],
     link: 'https://flash-cards.dan-maguire.com',
     pinned: true

@@ -1,0 +1,22 @@
+<div class="projects-tabs" role="tablist" aria-label="Projects view">
+  <button
+    type="button"
+    role="tab"
+    class="projects-tabs__btn"
+    [class.projects-tabs__btn--active]="activeTab === 'summaries'"
+    [attr.aria-selected]="activeTab === 'summaries'"
+    (click)="select('summaries')"
+  >
+    Summaries
+  </button>
+  <button
+    type="button"
+    role="tab"
+    class="projects-tabs__btn"
+    [class.projects-tabs__btn--active]="activeTab === 'status'"
+    [attr.aria-selected]="activeTab === 'status'"
+    (click)="select('status')"
+  >
+    Status
+  </button>
+</div>

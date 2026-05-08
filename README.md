@@ -47,7 +47,7 @@ Preferred pattern:
 
 ```html
 <!-- Internal route -->
-<a [routerLink]="'/insights/engineering-cultures'">Engineering Cultures</a>
+<a [routerLink]="'/projects/insights/engineering-cultures'">Engineering Cultures</a>
 
 <!-- External destination -->
 <a href="https://example.com" target="_blank" rel="noopener noreferrer">External Link</a>
