@@ -1,4 +1,4 @@
-import type { ProjectEntry } from '../cade-stories/cade-stories';
+import type { ProjectEntry } from '../../projects/experiments/cade-stories/cade-stories';
 
 export const flashCardsProject: ProjectEntry = {
   slug: 'flash-cards',

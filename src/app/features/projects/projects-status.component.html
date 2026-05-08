@@ -21,11 +21,11 @@
       <ng-container *ngFor="let phaseKey of [activePhase]; track phaseKey">
         <div class="status-panel__inner">
           <project-status-card
-            *ngFor="let entry of activeEntries"
-            [title]="entry.title"
-            [category]="entry.category"
-            [summary]="entry.summary"
-            [link]="entry.link"
+            *ngFor="let project of activeEntries"
+            [title]="project.title"
+            [category]="statusCategory(project)"
+            [summary]="project.summary"
+            [link]="statusLink(project)"
           />
           <p *ngIf="activeEntries.length === 0" class="status-panel__empty">No projects in this phase yet.</p>
         </div>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Project } from './project.model';
-import { getProjectBySlug } from './projects.data';
+import { getProjectBySlug, projectCategoryEyebrow } from './projects.data';
 
 @Component({
   selector: 'app-project-detail-page',
@@ -32,7 +32,18 @@ export class ProjectDetailPageComponent implements OnInit {
   }
 
   descriptionParagraphs(project: Project): string[] {
-    return project.longDescription
+    return this.splitDescriptionBlocks(project.longDescription);
+  }
+
+  postGalleryParagraphs(project: Project): string[] {
+    if (!project.postGalleryLongDescription?.trim()) {
+      return [];
+    }
+    return this.splitDescriptionBlocks(project.postGalleryLongDescription);
+  }
+
+  private splitDescriptionBlocks(text: string): string[] {
+    return text
       .split(/\n\s*\n/)
       .map(p => p.trim())
       .filter(Boolean);
@@ -53,5 +64,9 @@ export class ProjectDetailPageComponent implements OnInit {
 
   hasExternalLink(project: Project): boolean {
     return !!project.link && project.link.startsWith('http');
+  }
+
+  categoryEyebrow(project: Project): string {
+    return projectCategoryEyebrow(project);
   }
 }

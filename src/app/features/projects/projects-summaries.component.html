@@ -62,18 +62,18 @@
     class="project-card-link block no-underline text-left transition duration-200 hover:opacity-95"
   >
     <span *ngIf="project.pinned" class="project-card-pin" aria-hidden="true">★</span>
-    <app-card [eyebrow]="project.category" [title]="project.title" [description]="project.summary">
-      <div class="mt-6 grid gap-4" [ngClass]="project.filterCategory !== 'insights' ? 'lg:grid-cols-[0.65fr_0.35fr]' : ''">
-        <ng-container *ngIf="project.filterCategory !== 'insights'">
+    <app-card [eyebrow]="categoryEyebrow(project)" [title]="project.title" [description]="project.summary">
+      <div class="mt-6 grid gap-4" [ngClass]="!insightsOnlyLayout(project) ? 'lg:grid-cols-[0.65fr_0.35fr]' : ''">
+        <ng-container *ngIf="!insightsOnlyLayout(project)">
           <img
-            *ngIf="project.screenshot"
-            [src]="project.screenshot"
-            [alt]="project.title + ' screenshot'"
+            *ngIf="summaryCardPreviewSrc(project) as previewSrc"
+            [src]="previewSrc"
+            [alt]="project.title + ' preview'"
             class="h-44 w-full rounded-3xl border border-slate-800 object-cover object-top bg-slate-950/90"
             loading="lazy"
           />
           <div
-            *ngIf="!project.screenshot"
+            *ngIf="!summaryCardPreviewSrc(project)"
             class="h-44 rounded-3xl border border-slate-800 bg-slate-950/90 p-4 text-slate-500 flex items-center justify-center text-sm"
           >
             Screenshot placeholder
@@ -82,7 +82,7 @@
         <div class="space-y-4 text-slate-300">
           <div>
             <p class="text-xs uppercase tracking-[0.28em] text-slate-400">
-              {{ project.filterCategory === 'insights' ? 'Tags' : 'Tech stack' }}
+              {{ insightsOnlyLayout(project) ? 'Tags' : 'Tech stack' }}
             </p>
             <p class="mt-2 text-slate-300">{{ techStackLine(project) }}</p>
           </div>

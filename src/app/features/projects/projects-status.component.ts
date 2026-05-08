@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProjectStatusEntry, SDLCPhase } from './project-status.model';
-import { PROJECT_STATUS_ENTRIES } from './project-status.data';
+import { Project, SDLCPhase, projectSdlcPhase } from './project.model';
+import { PROJECTS, projectStatusCategoryLabel, projectStatusDetailLink } from './projects.data';
 import { ProjectStatusCardComponent } from './project-status-card.component';
 
 @Component({
@@ -23,14 +23,14 @@ export class ProjectsStatusComponent {
     legacy: 'Legacy'
   };
 
-  readonly entriesByPhase: Record<SDLCPhase, ProjectStatusEntry[]>;
+  readonly entriesByPhase: Record<SDLCPhase, Project[]>;
 
   activePhase: SDLCPhase = 'idea';
 
   constructor() {
-    const map = {} as Record<SDLCPhase, ProjectStatusEntry[]>;
+    const map = {} as Record<SDLCPhase, Project[]>;
     for (const phase of this.phases) {
-      map[phase] = PROJECT_STATUS_ENTRIES.filter(entry => entry.phase === phase);
+      map[phase] = PROJECTS.filter(project => projectSdlcPhase(project) === phase);
     }
     this.entriesByPhase = map;
   }
@@ -39,7 +39,15 @@ export class ProjectsStatusComponent {
     this.activePhase = phase;
   }
 
-  get activeEntries(): ProjectStatusEntry[] {
+  get activeEntries(): Project[] {
     return this.entriesByPhase[this.activePhase];
+  }
+
+  statusCategory(project: Project): string {
+    return projectStatusCategoryLabel(project);
+  }
+
+  statusLink(project: Project): string {
+    return projectStatusDetailLink(project);
   }
 }
