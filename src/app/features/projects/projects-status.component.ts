@@ -50,4 +50,8 @@ export class ProjectsStatusComponent {
   statusLink(project: Project): string {
     return projectStatusDetailLink(project);
   }
+
+  countForPhase(phase: SDLCPhase): number {
+    return this.entriesByPhase[phase].length;
+  }
 }

@@ -5,10 +5,10 @@
   command = "npm run build"
   publish = "dist/portfolio-principal"
 
-# Legacy insight URLs (bookmarks, external links)
+# Legacy insight URLs under /projects/insights/ (bookmarks, external links)
 [[redirects]]
-  from = "/insights/*"
-  to = "/projects/insights/:splat"
+  from = "/projects/insights/*"
+  to = "/insights/:splat"
   status = 301
 
 [[redirects]]

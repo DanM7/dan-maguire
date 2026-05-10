@@ -1,0 +1,14 @@
+.insights-card-link {
+  position: relative;
+}
+
+.insights-card-pin {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.65rem;
+  color: #f5c542;
+  font-size: 0.85rem;
+  line-height: 1;
+  pointer-events: none;
+  z-index: 1;
+}

@@ -16,14 +16,6 @@
   <button
     type="button"
     class="filter-button"
-    [ngClass]="{ active: activeFilter === 'insights' }"
-    (click)="setFilter('insights')"
-  >
-    Insights
-  </button>
-  <button
-    type="button"
-    class="filter-button"
     [ngClass]="{ active: activeFilter === 'comics' }"
     (click)="setFilter('comics')"
   >
@@ -63,27 +55,20 @@
   >
     <span *ngIf="project.pinned" class="project-card-pin" aria-hidden="true">★</span>
     <app-card [eyebrow]="categoryEyebrow(project)" [title]="project.title" [description]="project.summary">
-      <div class="mt-6 grid gap-4" [ngClass]="!insightsOnlyLayout(project) ? 'lg:grid-cols-[0.65fr_0.35fr]' : ''">
-        <ng-container *ngIf="!insightsOnlyLayout(project)">
+      <div class="mt-6 grid gap-4" [ngClass]="{ 'lg:grid-cols-[0.65fr_0.35fr]': summaryCardPreviewSrc(project) }">
+        <ng-container *ngIf="summaryCardPreviewSrc(project) as previewSrc">
           <img
-            *ngIf="summaryCardPreviewSrc(project) as previewSrc"
             [src]="previewSrc"
             [alt]="project.title + ' preview'"
-            class="h-44 w-full rounded-3xl border border-slate-800 object-cover object-top bg-slate-950/90"
+            class="h-44 w-full rounded-3xl border border-slate-800 object-cover bg-slate-950/90"
+            [class.summaries-preview-img--align-top]="resolveSummaryPreviewImageAlign(project) === 'alignTop'"
+            [class.summaries-preview-img--align-middle]="resolveSummaryPreviewImageAlign(project) === 'alignMiddle'"
             loading="lazy"
           />
-          <div
-            *ngIf="!summaryCardPreviewSrc(project)"
-            class="h-44 rounded-3xl border border-slate-800 bg-slate-950/90 p-4 text-slate-500 flex items-center justify-center text-sm"
-          >
-            Screenshot placeholder
-          </div>
         </ng-container>
         <div class="space-y-4 text-slate-300">
           <div>
-            <p class="text-xs uppercase tracking-[0.28em] text-slate-400">
-              {{ insightsOnlyLayout(project) ? 'Tags' : 'Tech stack' }}
-            </p>
+            <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Tech stack</p>
             <p class="mt-2 text-slate-300">{{ techStackLine(project) }}</p>
           </div>
         </div>

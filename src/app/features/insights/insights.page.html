@@ -1,0 +1,24 @@
+<section class="section-wrapper">
+  <div class="page-container">
+    <p class="mb-6">
+      <a routerLink="/" class="text-sm font-medium text-brand-400 transition hover:text-brand-300">← Home</a>
+    </p>
+
+    <app-section-header
+      label="INSIGHTS"
+      title="Writing on engineering, craft, and leadership"
+      subtitle="Longer-form notes on how I think about teams, systems, and creative technical work — separate from the project showcase."
+    />
+
+    <div class="grid gap-6 mt-2">
+      <a
+        *ngFor="let article of articles"
+        [routerLink]="['/insights', article.slug]"
+        class="insights-card-link block no-underline text-left transition duration-200 hover:opacity-95"
+      >
+        <span *ngIf="article.pinned" class="insights-card-pin" aria-hidden="true">★</span>
+        <app-card eyebrow="INSIGHT" [title]="article.title" [description]="article.summary" />
+      </a>
+    </div>
+  </div>
+</section>

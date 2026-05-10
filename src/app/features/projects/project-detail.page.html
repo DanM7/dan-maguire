@@ -44,13 +44,20 @@
       <div class="mt-10">
         <h2 class="text-xs uppercase tracking-[0.32em] text-slate-400">Gallery</h2>
         <div *ngIf="galleryImages(p).length > 0" class="project-detail-gallery mt-4">
-          <img
-            *ngFor="let src of galleryImages(p)"
-            [src]="src"
-            [alt]="p.title + ' screenshot'"
-            class="project-detail-gallery__img"
-            loading="lazy"
-          />
+          <button
+            type="button"
+            *ngFor="let src of galleryImages(p); let i = index; let c = count"
+            class="project-detail-gallery__thumb"
+            (click)="openLightbox(p, i)"
+            [attr.aria-label]="'View image ' + (i + 1) + ' of ' + c + ' larger'"
+          >
+            <img
+              [src]="src"
+              [alt]="p.title + ' screenshot'"
+              class="project-detail-gallery__img"
+              loading="lazy"
+            />
+          </button>
         </div>
         <div
           *ngIf="galleryImages(p).length === 0"
@@ -84,14 +91,58 @@
         <p class="mt-3 text-slate-300 leading-7 whitespace-pre-line">{{ p.challenges }}</p>
       </div>
 
-      <div *ngIf="p.insightPath" class="mt-10 flex flex-wrap gap-4">
-        <a
-          [routerLink]="p.insightPath"
-          class="inline-flex items-center gap-2 rounded-full border border-brand-500/40 bg-brand-500/10 px-5 py-2 text-sm font-semibold text-brand-300 transition hover:border-brand-400 hover:bg-brand-500/20"
-        >
-          Read full insight →
-        </a>
-      </div>
     </article>
+  </div>
+
+  <div
+    *ngIf="lightboxOpen"
+    class="project-detail-lightbox"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="'Gallery, image ' + (lightboxIndex + 1) + ' of ' + lightboxImageCount()"
+  >
+    <div
+      class="project-detail-lightbox__backdrop"
+      aria-hidden="true"
+      (click)="closeLightbox()"
+    ></div>
+
+    <button
+      type="button"
+      class="project-detail-lightbox__close"
+      (click)="closeLightbox(); $event.stopPropagation()"
+      aria-label="Close gallery"
+    >
+      <span aria-hidden="true">×</span>
+    </button>
+
+    <button
+      type="button"
+      class="project-detail-lightbox__nav project-detail-lightbox__nav--prev"
+      (click)="lightboxPrev(); $event.stopPropagation()"
+      [disabled]="!lightboxCanPrev()"
+      aria-label="Previous image"
+    >
+      <span aria-hidden="true">‹</span>
+    </button>
+
+    <button
+      type="button"
+      class="project-detail-lightbox__nav project-detail-lightbox__nav--next"
+      (click)="lightboxNext(); $event.stopPropagation()"
+      [disabled]="!lightboxCanNext()"
+      aria-label="Next image"
+    >
+      <span aria-hidden="true">›</span>
+    </button>
+
+    <div class="project-detail-lightbox__inner" (click)="closeLightbox()">
+      <img
+        class="project-detail-lightbox__img"
+        [src]="lightboxActiveSrc()"
+        [alt]="p.title + ' gallery image'"
+        (click)="$event.stopPropagation()"
+      />
+    </div>
   </div>
 </section>

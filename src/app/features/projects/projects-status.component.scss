@@ -83,6 +83,23 @@
   line-height: 1.3;
 }
 
+.status-timeline__count {
+  display: block;
+  align-self: stretch;
+  width: 100%;
+  margin-top: 0.35rem;
+  text-align: center;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #64748b;
+  line-height: 1.25;
+}
+
+.status-timeline__step--active .status-timeline__count {
+  color: rgba(125, 211, 252, 0.9);
+}
+
 .status-timeline__connector {
   flex: 1 1 1.25rem;
   min-width: 0.5rem;

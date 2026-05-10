@@ -7,10 +7,12 @@
         class="status-timeline__step"
         [class.status-timeline__step--active]="activePhase === phase"
         [attr.aria-selected]="activePhase === phase"
+        [attr.aria-label]="phaseLabels[phase] + ', ' + countForPhase(phase) + ' projects'"
         (click)="selectPhase(phase)"
       >
         <span class="status-timeline__dot" aria-hidden="true"></span>
         <span class="status-timeline__label">{{ phaseLabels[phase] }}</span>
+        <span class="status-timeline__count" aria-hidden="true">({{ countForPhase(phase) }})</span>
       </button>
       <span *ngIf="!last" class="status-timeline__connector" aria-hidden="true"></span>
     </ng-container>

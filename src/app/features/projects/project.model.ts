@@ -1,7 +1,6 @@
 export type ProjectFilter =
   | 'games'
   | 'art'
-  | 'insights'
   | 'comics'
   | 'music'
   | 'writing'
@@ -12,6 +11,9 @@ export type ProjectSDLC = 'Idea' | 'Exploring' | 'Building' | 'Live' | 'Evolving
 
 /** Lowercase phase key used by the Status timeline and grouping. */
 export type SDLCPhase = 'idea' | 'exploring' | 'building' | 'live' | 'evolving' | 'legacy';
+
+/** Summaries-tab preview crop for `object-fit: cover` (tall/wide images). Default: alignTop. */
+export type SummaryPreviewImageAlign = 'alignTop' | 'alignMiddle';
 
 export interface Project {
   slug: string;
@@ -27,6 +29,8 @@ export interface Project {
   techStack: string[];
   /** Primary card image; `null` shows the placeholder tile. */
   screenshot: string | null;
+  /** How the summaries preview image is positioned when cropped; omit for alignTop. */
+  summaryPreviewImageAlign?: SummaryPreviewImageAlign;
   longDescription: string;
   /**
    * Optional body copy after the screenshot gallery (before Future Development).
@@ -38,8 +42,6 @@ export interface Project {
   link?: string;
   /** Optional disabled CTA label shown after body copy and before the gallery. */
   preGalleryDisabledCta?: string;
-  /** In-app insight route (e.g. `/projects/insights/engineering-cultures`). */
-  insightPath?: string;
   pinned?: boolean;
   features?: string;
   challenges?: string;

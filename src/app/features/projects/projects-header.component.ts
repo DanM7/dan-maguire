@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'projects-header',
   standalone: true,
+  imports: [RouterLink],
   template: `
     <div class="mb-8 max-w-2xl">
       <p class="text-sm uppercase tracking-[0.32em] text-cyan-200/80">PROJECTS</p>
@@ -11,7 +13,8 @@ import { Component } from '@angular/core';
         A curated collection of games, art, comics, music, writing, and experimental systems — built to explore interaction, storytelling, and creative technology.
       </p>
       <p class="mt-4 text-slate-300 leading-relaxed">
-        Switch between the two tabs to view either the curated project summaries or a status-driven look at where each project sits in my SDLC.
+        Switch between the two tabs to view either the curated project summaries or a status-driven look at where each project sits in my
+        <a routerLink="/insights/personal-sdlc" class="text-brand-300 underline">SDLC</a>.
       </p>
     </div>
   `

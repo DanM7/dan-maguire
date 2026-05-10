@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CardComponent } from '../../shared/components/card/card.component';
-import { Project, ProjectFilter } from './project.model';
+import { Project, ProjectFilter, SummaryPreviewImageAlign } from './project.model';
 import { PROJECTS, projectCategoryEyebrow } from './projects.data';
 
 @Component({
@@ -36,20 +36,11 @@ export class ProjectsSummariesComponent {
   }
 
   projectCardLink(project: Project): string | string[] {
-    if (project.categories.includes('insights') && project.insightPath) {
-      return project.insightPath;
-    }
-
     return ['/projects', project.slug];
   }
 
   categoryEyebrow(project: Project): string {
     return projectCategoryEyebrow(project);
-  }
-
-  /** Insights-only cards omit screenshots and show Tags (matches former single-category insights UX). */
-  insightsOnlyLayout(project: Project): boolean {
-    return project.categories.length === 1 && project.categories[0] === 'insights';
   }
 
   /** Card preview image: primary screenshot, else first gallery asset (detail page can still show full gallery). */
@@ -59,6 +50,11 @@ export class ProjectsSummariesComponent {
     }
     const first = project.gallery.find(url => !!url?.trim());
     return first ?? null;
+  }
+
+  /** Resolves `object-position` for the summaries preview (`object-cover`). Omits → alignTop. */
+  resolveSummaryPreviewImageAlign(project: Project): SummaryPreviewImageAlign {
+    return project.summaryPreviewImageAlign ?? 'alignTop';
   }
 
   setFilter(value: string): void {
