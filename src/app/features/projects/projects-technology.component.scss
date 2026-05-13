@@ -34,35 +34,16 @@
   text-underline-offset: 3px;
 }
 
-.project-card-link {
-  position: relative;
-}
-
-.project-card-pin {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.65rem;
-  color: #f5c542;
-  font-size: 0.85rem;
-  line-height: 1;
-  pointer-events: none;
-}
-
-/**
- * Preview crop anchor for `object-fit: cover`.
- * Do not rely on Tailwind `object-top` / `object-center` only inside `[ngClass]` — JIT often skips those
- * strings, so utilities never ship and the browser keeps the default `object-position: center`.
- */
-.summaries-preview-img--align-top {
-  object-position: center top;
-}
-
-.summaries-preview-img--align-middle {
-  object-position: center center;
-}
-
 @media (max-width: 768px) {
   .filter-bar {
     gap: 0.75rem;
   }
+}
+
+.technology-card-static {
+  transition: opacity 0.2s ease;
+}
+
+.project-card-link {
+  position: relative;
 }

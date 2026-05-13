@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-export type ProjectsTab = 'summaries' | 'status';
+export type ProjectsTab = 'products' | 'technology' | 'ecosystem' | 'status';
 
 @Component({
   selector: 'projects-tabs',
@@ -9,7 +9,7 @@ export type ProjectsTab = 'summaries' | 'status';
   styleUrl: './projects-tabs.component.scss'
 })
 export class ProjectsTabsComponent {
-  @Input() activeTab: ProjectsTab = 'summaries';
+  @Input() activeTab: ProjectsTab = 'products';
 
   @Output() tabChange = new EventEmitter<ProjectsTab>();
 

@@ -33,6 +33,15 @@ export function projectStatusDetailLink(project: Project): string {
   return `/projects/${project.slug}`;
 }
 
+/** User-facing products shown on the Projects → Products tab (order preserved). */
+export const PRODUCT_CARD_SLUGS: readonly string[] = [
+  'cade-stories',
+  'rummy-with-my-grandparents',
+  'flash-cards',
+  'mpc-rhythm-pad',
+  'chip-boy-ultra-dude'
+] as const;
+
 export const PROJECTS: Project[] = [
   {
     slug: 'interactive-system-builder',

@@ -1,0 +1,111 @@
+<div
+  class="ecosystem-graph-root ecosystem-graph-wrap"
+  [class.ecosystem-graph-root--has-selection]="!!selectedId"
+  (click)="clearSelection()"
+>
+  <div class="ecosystem-legend" (click)="$event.stopPropagation()" role="group" aria-label="Node type key">
+    <span class="ecosystem-legend__title">Key</span>
+    <ul class="ecosystem-legend__list">
+      <li *ngFor="let row of legendItems" class="ecosystem-legend__item">
+        <span
+          class="ecosystem-legend__swatch"
+          [ngClass]="'ecosystem-legend__swatch--' + row.type"
+          aria-hidden="true"
+        ></span>
+        <span class="ecosystem-legend__label">{{ row.label }}</span>
+      </li>
+    </ul>
+    <p class="ecosystem-legend__hint">Click a node to highlight it and its connections. Click the background to clear.</p>
+  </div>
+
+  <svg
+    class="ecosystem-graph-svg"
+    [attr.viewBox]="viewBox"
+    xmlns="http://www.w3.org/2000/svg"
+    role="img"
+    aria-label="Project ecosystem relationships"
+    (click)="clearSelection()"
+  >
+    <defs>
+      <marker
+        id="ecosystem-arrow"
+        viewBox="0 0 10 10"
+        refX="9"
+        refY="5"
+        markerWidth="5"
+        markerHeight="5"
+        orient="auto"
+      >
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(148, 163, 184, 0.65)" />
+      </marker>
+      <marker
+        id="ecosystem-arrow-dim"
+        viewBox="0 0 10 10"
+        refX="9"
+        refY="5"
+        markerWidth="4"
+        markerHeight="4"
+        orient="auto"
+      >
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(51, 65, 85, 0.35)" />
+      </marker>
+      <marker
+        id="ecosystem-arrow-active"
+        viewBox="0 0 10 10"
+        refX="9"
+        refY="5"
+        markerWidth="6"
+        markerHeight="6"
+        orient="auto"
+      >
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(56, 189, 248, 0.95)" />
+      </marker>
+    </defs>
+
+    <g class="ecosystem-graph__edges" aria-hidden="true">
+      <ng-container *ngFor="let edge of edges">
+        <path
+          class="ecosystem-graph__edge"
+          [class.ecosystem-graph__edge--highlight]="!!selectedId && isEdgeHighlighted(edge)"
+          [class.ecosystem-graph__edge--dim]="isEdgeDimmed(edge)"
+          [attr.d]="edgePath(edge)"
+          [attr.marker-end]="markerEnd(edge)"
+        >
+          <title>{{ edgeTitle(edge) }}</title>
+        </path>
+      </ng-container>
+    </g>
+
+    <g class="ecosystem-graph__nodes">
+      <ng-container *ngFor="let node of nodes">
+        <g
+          *ngIf="bounds(node.id) as b"
+          class="ecosystem-graph__node-g"
+          [class.ecosystem-graph__node-g--highlight]="!!selectedId && isNodeHighlighted(node.id)"
+          [class.ecosystem-graph__node-g--dim]="isNodeDimmed(node.id)"
+          [attr.transform]="'translate(' + b.x + ',' + b.y + ')'"
+          role="button"
+          tabindex="0"
+          [attr.aria-pressed]="selectedId === node.id"
+          [attr.aria-label]="'Focus connections for ' + node.label"
+          (click)="onNodeActivate(node.id, $event)"
+          (keydown.enter)="onNodeActivate(node.id, $event)"
+          (keydown.space)="onNodeActivate(node.id, $event)"
+        >
+          <rect
+            [ngClass]="['ecosystem-graph__node-rect', 'ecosystem-graph__node-rect--' + node.type]"
+            [attr.width]="b.w"
+            [attr.height]="b.h"
+            rx="10"
+            ry="10"
+          />
+          <foreignObject x="0" y="0" [attr.width]="b.w" [attr.height]="b.h" class="ecosystem-graph__fo">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="eco-node-html">
+              {{ node.label }}
+            </div>
+          </foreignObject>
+        </g>
+      </ng-container>
+    </g>
+  </svg>
+</div>

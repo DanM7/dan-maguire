@@ -3,11 +3,31 @@
     type="button"
     role="tab"
     class="projects-tabs__btn"
-    [class.projects-tabs__btn--active]="activeTab === 'summaries'"
-    [attr.aria-selected]="activeTab === 'summaries'"
-    (click)="select('summaries')"
+    [class.projects-tabs__btn--active]="activeTab === 'products'"
+    [attr.aria-selected]="activeTab === 'products'"
+    (click)="select('products')"
   >
-    Summaries
+    Products
+  </button>
+  <button
+    type="button"
+    role="tab"
+    class="projects-tabs__btn"
+    [class.projects-tabs__btn--active]="activeTab === 'technology'"
+    [attr.aria-selected]="activeTab === 'technology'"
+    (click)="select('technology')"
+  >
+    Technology
+  </button>
+  <button
+    type="button"
+    role="tab"
+    class="projects-tabs__btn"
+    [class.projects-tabs__btn--active]="activeTab === 'ecosystem'"
+    [attr.aria-selected]="activeTab === 'ecosystem'"
+    (click)="select('ecosystem')"
+  >
+    Ecosystem
   </button>
   <button
     type="button"
@@ -17,6 +37,6 @@
     [attr.aria-selected]="activeTab === 'status'"
     (click)="select('status')"
   >
-    Status
+    SDLC
   </button>
 </div>

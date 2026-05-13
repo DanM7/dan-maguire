@@ -42,7 +42,8 @@ export const INSIGHT_ARTICLES: InsightArticle[] = [
     slug: 'engineering-and-creativity',
     title: 'Engineering and Creativity',
     summary:
-      'How technical craft and creative thinking combine to shape better systems and stronger problem framing.'
+      'How technical craft and creative thinking combine to shape better systems and stronger problem framing.',
+    pinned: true
   },
   {
     slug: 'things-that-feel-good-to-use',

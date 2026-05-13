@@ -3,7 +3,9 @@
     <projects-header></projects-header>
     <projects-tabs [activeTab]="activeTab" (tabChange)="setTab($event)"></projects-tabs>
 
-    <projects-summaries *ngIf="activeTab === 'summaries'"></projects-summaries>
+    <projects-products *ngIf="activeTab === 'products'"></projects-products>
+    <projects-technology *ngIf="activeTab === 'technology'"></projects-technology>
+    <projects-ecosystem *ngIf="activeTab === 'ecosystem'"></projects-ecosystem>
     <projects-status *ngIf="activeTab === 'status'"></projects-status>
   </div>
 </section>

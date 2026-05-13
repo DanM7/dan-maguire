@@ -3,53 +3,19 @@
     All
   </button>
   <button
+    *ngFor="let row of portfolioFilters"
     type="button"
     class="filter-button"
-    [ngClass]="{ active: activeFilter === 'games' }"
-    (click)="setFilter('games')"
+    [ngClass]="{ active: activeFilter === row.id }"
+    (click)="setFilter(row.id)"
   >
-    Games
-  </button>
-  <button type="button" class="filter-button" [ngClass]="{ active: activeFilter === 'art' }" (click)="setFilter('art')">
-    Art
-  </button>
-  <button
-    type="button"
-    class="filter-button"
-    [ngClass]="{ active: activeFilter === 'comics' }"
-    (click)="setFilter('comics')"
-  >
-    Comics
-  </button>
-  <button
-    type="button"
-    class="filter-button"
-    [ngClass]="{ active: activeFilter === 'music' }"
-    (click)="setFilter('music')"
-  >
-    Music
-  </button>
-  <button
-    type="button"
-    class="filter-button"
-    [ngClass]="{ active: activeFilter === 'writing' }"
-    (click)="setFilter('writing')"
-  >
-    Writing
-  </button>
-  <button
-    type="button"
-    class="filter-button"
-    [ngClass]="{ active: activeFilter === 'experiments' }"
-    (click)="setFilter('experiments')"
-  >
-    Experiments
+    {{ row.label }}
   </button>
 </div>
 
-<div class="grid gap-6 mt-6">
+<div class="mt-6 grid gap-6">
   <a
-    *ngFor="let project of filteredProjects"
+    *ngFor="let project of displayedProductProjects"
     [routerLink]="projectCardLink(project)"
     class="project-card-link block no-underline text-left transition duration-200 hover:opacity-95"
   >
@@ -77,4 +43,4 @@
   </a>
 </div>
 
-<p *ngIf="filteredProjects.length === 0" class="mt-10 text-slate-400">No projects match this category yet.</p>
+<p *ngIf="displayedProductProjects.length === 0" class="mt-10 text-slate-400">No products match this category.</p>

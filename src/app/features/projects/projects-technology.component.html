@@ -1,0 +1,46 @@
+<ng-container>
+  <ng-template #technologyCard let-item="item">
+    <app-card [eyebrow]="kindEyebrow(item.kind)" [title]="item.title" [description]="item.description">
+      <div *ngIf="item.githubUrl" class="mt-4">
+        <a
+          [href]="item.githubUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-sm font-medium text-brand-300 underline transition hover:text-brand-200"
+          (click)="$event.stopPropagation()"
+        >
+          GitHub ↗
+        </a>
+      </div>
+    </app-card>
+  </ng-template>
+
+  <div class="filter-bar">
+    <button
+      *ngFor="let row of technologyFilters"
+      type="button"
+      class="filter-button"
+      [ngClass]="{ active: activeFilter === row.id }"
+      (click)="setFilter(row.id)"
+    >
+      {{ row.label }}
+    </button>
+  </div>
+
+  <div class="mt-6 grid gap-6">
+    <ng-container *ngFor="let item of displayedTechnologyItems">
+      <a
+        *ngIf="item.projectSlug"
+        [routerLink]="['/projects', item.projectSlug]"
+        class="project-card-link block no-underline text-left transition duration-200 hover:opacity-95"
+      >
+        <ng-container *ngTemplateOutlet="technologyCard; context: { item: item }"></ng-container>
+      </a>
+      <div *ngIf="!item.projectSlug" class="technology-card-static block text-left">
+        <ng-container *ngTemplateOutlet="technologyCard; context: { item: item }"></ng-container>
+      </div>
+    </ng-container>
+  </div>
+
+  <p *ngIf="displayedTechnologyItems.length === 0" class="mt-10 text-slate-400">No technology entries match this filter.</p>
+</ng-container>

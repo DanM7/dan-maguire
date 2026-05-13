@@ -1,0 +1,205 @@
+app-ecosystem-graph .ecosystem-graph-root.ecosystem-graph-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 1rem;
+  border: 1px solid rgba(30, 41, 59, 0.95);
+  background: rgba(2, 6, 23, 0.55);
+  padding: 0.75rem;
+}
+
+app-ecosystem-graph .ecosystem-legend {
+  margin-bottom: 1rem;
+  padding: 0.65rem 0.85rem 0.85rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(51, 65, 85, 0.55);
+  background: rgba(15, 23, 42, 0.55);
+}
+
+app-ecosystem-graph .ecosystem-legend__title {
+  display: block;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-bottom: 0.65rem;
+}
+
+app-ecosystem-graph .ecosystem-legend__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.1rem;
+  align-items: center;
+}
+
+app-ecosystem-graph .ecosystem-legend__item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+}
+
+app-ecosystem-graph .ecosystem-legend__swatch {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 0.25rem;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  border-width: 2px;
+  border-style: solid;
+  background: rgba(15, 23, 42, 0.98);
+}
+
+app-ecosystem-graph .ecosystem-legend__swatch--product {
+  border-color: rgba(34, 211, 238, 0.65);
+}
+
+app-ecosystem-graph .ecosystem-legend__swatch--engine {
+  border-color: rgba(129, 140, 248, 0.7);
+}
+
+app-ecosystem-graph .ecosystem-legend__swatch--framework {
+  border-color: rgba(167, 139, 250, 0.7);
+}
+
+app-ecosystem-graph .ecosystem-legend__swatch--tool {
+  border-color: rgba(251, 191, 36, 0.65);
+}
+
+app-ecosystem-graph .ecosystem-legend__swatch--pipeline {
+  border-color: rgba(45, 212, 191, 0.65);
+}
+
+app-ecosystem-graph .ecosystem-legend__label {
+  font-size: 0.8125rem;
+  color: #cbd5e1;
+}
+
+app-ecosystem-graph .ecosystem-legend__hint {
+  margin: 0.65rem 0 0;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: #64748b;
+}
+
+app-ecosystem-graph .ecosystem-graph-svg {
+  display: block;
+  width: 100%;
+  min-width: 720px;
+  height: auto;
+  aspect-ratio: 1200 / 688;
+  max-height: min(78vh, 720px);
+}
+
+app-ecosystem-graph .ecosystem-graph__edge {
+  fill: none;
+  stroke: rgba(71, 85, 105, 0.5);
+  stroke-width: 1.1;
+  transition:
+    stroke 0.2s ease,
+    stroke-width 0.2s ease,
+    opacity 0.2s ease;
+}
+
+app-ecosystem-graph .ecosystem-graph-root--has-selection .ecosystem-graph__edge--dim {
+  stroke: rgba(51, 65, 85, 0.28);
+  stroke-width: 1;
+  opacity: 0.55;
+}
+
+app-ecosystem-graph .ecosystem-graph__edge--highlight {
+  stroke: rgba(56, 189, 248, 0.92) !important;
+  stroke-width: 2.35;
+  opacity: 1 !important;
+}
+
+app-ecosystem-graph .ecosystem-graph__node-g {
+  cursor: pointer;
+  outline: none;
+  transition:
+    opacity 0.2s ease,
+    filter 0.2s ease;
+}
+
+app-ecosystem-graph .ecosystem-graph__node-g:focus-visible {
+  filter: drop-shadow(0 0 0.35rem rgba(56, 189, 248, 0.55));
+}
+
+app-ecosystem-graph .ecosystem-graph-root--has-selection .ecosystem-graph__node-g--dim {
+  opacity: 0.22;
+}
+
+app-ecosystem-graph .ecosystem-graph__node-g--highlight .ecosystem-graph__node-rect {
+  filter: drop-shadow(0 0 0.5rem rgba(56, 189, 248, 0.35));
+  stroke-width: 2px;
+}
+
+app-ecosystem-graph .ecosystem-graph__node-rect {
+  stroke-width: 1;
+  transition:
+    stroke-width 0.2s ease,
+    filter 0.2s ease;
+}
+
+app-ecosystem-graph .ecosystem-graph__node-rect--product {
+  fill: rgba(15, 23, 42, 0.98);
+  stroke: rgba(34, 211, 238, 0.5);
+}
+
+app-ecosystem-graph .ecosystem-graph__node-rect--engine {
+  fill: rgba(15, 23, 42, 0.98);
+  stroke: rgba(129, 140, 248, 0.55);
+}
+
+app-ecosystem-graph .ecosystem-graph__node-rect--framework {
+  fill: rgba(15, 23, 42, 0.98);
+  stroke: rgba(167, 139, 250, 0.55);
+}
+
+app-ecosystem-graph .ecosystem-graph__node-rect--tool {
+  fill: rgba(15, 23, 42, 0.98);
+  stroke: rgba(251, 191, 36, 0.5);
+}
+
+app-ecosystem-graph .ecosystem-graph__node-rect--pipeline {
+  fill: rgba(15, 23, 42, 0.98);
+  stroke: rgba(45, 212, 191, 0.5);
+}
+
+app-ecosystem-graph .ecosystem-graph__fo {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+app-ecosystem-graph .eco-node-html {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 6px 8px;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  color: #f1f5f9;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  user-select: none;
+}
+
+@media (min-width: 1024px) {
+  app-ecosystem-graph .eco-node-html {
+    font-size: 11.5px;
+    padding: 8px 10px;
+  }
+}

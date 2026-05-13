@@ -13,7 +13,7 @@ import { RouterLink } from '@angular/router';
         A curated collection of games, art, comics, music, writing, and experimental systems — built to explore interaction, storytelling, and creative technology.
       </p>
       <p class="mt-4 text-slate-300 leading-relaxed">
-        Switch between the two tabs to view either the curated project summaries or a status-driven look at where each project sits in my
+        Use the tabs to browse user-facing products, the technology behind them, how they connect as an ecosystem, or where each effort sits in my
         <a routerLink="/insights/personal-sdlc" class="text-brand-300 underline">SDLC</a>.
       </p>
     </div>

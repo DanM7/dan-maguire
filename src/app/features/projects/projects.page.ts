@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProjectsHeaderComponent } from './projects-header.component';
-import { ProjectsSummariesComponent } from './projects-summaries.component';
+import { ProjectsProductsComponent } from './projects-products.component';
 import { ProjectsStatusComponent } from './projects-status.component';
 import { ProjectsTab, ProjectsTabsComponent } from './projects-tabs.component';
+import { ProjectsTechnologyComponent } from './projects-technology.component';
+import { ProjectsEcosystemComponent } from './projects-ecosystem.component';
 
 @Component({
   selector: 'app-projects-page',
@@ -12,13 +14,15 @@ import { ProjectsTab, ProjectsTabsComponent } from './projects-tabs.component';
     CommonModule,
     ProjectsHeaderComponent,
     ProjectsTabsComponent,
-    ProjectsSummariesComponent,
+    ProjectsProductsComponent,
+    ProjectsTechnologyComponent,
+    ProjectsEcosystemComponent,
     ProjectsStatusComponent
   ],
   templateUrl: './projects.page.html'
 })
 export class ProjectsPageComponent {
-  activeTab: ProjectsTab = 'summaries';
+  activeTab: ProjectsTab = 'products';
 
   setTab(tab: ProjectsTab): void {
     this.activeTab = tab;
