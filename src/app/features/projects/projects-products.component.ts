@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CardComponent } from '../../shared/components/card/card.component';
 import { Project, ProjectFilter, SummaryPreviewImageAlign } from './project.model';
-import { PRODUCT_CARD_SLUGS, PROJECTS, projectCategoryEyebrow } from './projects.data';
+import { PROJECTS, projectCategoryEyebrow } from './projects.data';
 
 @Component({
   selector: 'projects-products',
@@ -13,8 +13,6 @@ import { PRODUCT_CARD_SLUGS, PROJECTS, projectCategoryEyebrow } from './projects
   styleUrl: './projects-products.component.scss'
 })
 export class ProjectsProductsComponent {
-  private readonly bySlug = new Map(PROJECTS.map(p => [p.slug, p] as const));
-
   /** Same portfolio buckets as the former Summaries tab. */
   readonly portfolioFilters: { id: ProjectFilter; label: string }[] = [
     { id: 'games', label: 'Games' },
@@ -27,20 +25,28 @@ export class ProjectsProductsComponent {
 
   activeFilter: 'all' | ProjectFilter = 'all';
 
-  /** Products tab: fixed roster, same order as `PRODUCT_CARD_SLUGS`. */
+  /** Products tab: pinned first, then others; within each group, `PROJECTS` order. */
   get productProjects(): Project[] {
-    return PRODUCT_CARD_SLUGS.map(slug => this.bySlug.get(slug)).filter((p): p is Project => !!p);
+    return this.pinnedFirstStable(PROJECTS.filter(p => p.portfolioTab === 'products'));
   }
 
-  /** Roster for the grid: all products in slug order, or filtered by category (slug order preserved). */
+  /** Grid: product-tab projects, optionally filtered by creative category. */
   get displayedProductProjects(): Project[] {
     const f = this.activeFilter;
     if (f === 'all') {
       return this.productProjects;
     }
-    return PRODUCT_CARD_SLUGS.map(slug => this.bySlug.get(slug)).filter(
-      (p): p is Project => !!p && p.categories.includes(f)
-    );
+    return this.pinnedFirstStable(this.productProjects.filter(p => p.categories.includes(f)));
+  }
+
+  /** Pinned (★) entries first, stable order within pinned and within non-pinned. */
+  private pinnedFirstStable(projects: Project[]): Project[] {
+    const pinned: Project[] = [];
+    const rest: Project[] = [];
+    for (const p of projects) {
+      (p.pinned ? pinned : rest).push(p);
+    }
+    return [...pinned, ...rest];
   }
 
   setFilter(value: string): void {

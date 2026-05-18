@@ -16,7 +16,17 @@
 
     <article class="section-card p-6 sm:p-8 max-w-3xl">
       <div class="space-y-4 text-slate-300 leading-7">
-        <p *ngFor="let block of descriptionParagraphs(p)">{{ block }}</p>
+        <p *ngFor="let block of descriptionParagraphs(p)">
+          <ng-container *ngFor="let seg of descriptionParagraphSegments(block, p)">
+            <span *ngIf="seg.type === 'text'">{{ seg.value }}</span>
+            <a
+              *ngIf="seg.type === 'link'"
+              [routerLink]="['/projects', seg.slug]"
+              [textContent]="seg.text"
+              class="font-medium text-brand-300 underline decoration-brand-400/80 underline-offset-2 transition hover:text-brand-200"
+            ></a>
+          </ng-container>
+        </p>
       </div>
 
       <div *ngIf="hasExternalLink(p)" class="mt-10">

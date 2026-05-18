@@ -30,13 +30,15 @@
   <div class="mt-6 grid gap-6">
     <ng-container *ngFor="let item of displayedTechnologyItems">
       <a
-        *ngIf="item.projectSlug"
-        [routerLink]="['/projects', item.projectSlug]"
+        *ngIf="technologyItemDetailLink(item) as link"
+        [routerLink]="link"
         class="project-card-link block no-underline text-left transition duration-200 hover:opacity-95"
       >
+        <span *ngIf="item.pinned" class="project-card-pin" aria-hidden="true">★</span>
         <ng-container *ngTemplateOutlet="technologyCard; context: { item: item }"></ng-container>
       </a>
-      <div *ngIf="!item.projectSlug" class="technology-card-static block text-left">
+      <div *ngIf="!technologyItemDetailLink(item)" class="technology-card-static project-card-link block text-left">
+        <span *ngIf="item.pinned" class="project-card-pin" aria-hidden="true">★</span>
         <ng-container *ngTemplateOutlet="technologyCard; context: { item: item }"></ng-container>
       </div>
     </ng-container>

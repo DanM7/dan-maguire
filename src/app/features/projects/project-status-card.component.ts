@@ -11,6 +11,6 @@ import { RouterLink } from '@angular/router';
 export class ProjectStatusCardComponent {
   @Input({ required: true }) title!: string;
   @Input({ required: true }) category!: string;
-  @Input({ required: true }) summary!: string;
+  @Input() summary?: string;
   @Input({ required: true }) link!: string;
 }

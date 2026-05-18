@@ -1,13 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  ECOSYSTEM_EDGES,
-  ECOSYSTEM_NODE_BOUNDS,
-  ECOSYSTEM_NODES,
-  EcosystemEdge,
-  EcosystemNode,
-  EcosystemNodeType
-} from './ecosystem-graph';
+import { ECOSYSTEM_EDGES, ECOSYSTEM_NODE_BOUNDS, ECOSYSTEM_NODES } from './projects.data';
+import { EcosystemEdge, EcosystemNode, EcosystemNodeType } from './project.model';
 
 @Component({
   selector: 'app-ecosystem-graph',

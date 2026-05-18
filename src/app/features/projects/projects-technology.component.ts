@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CardComponent } from '../../shared/components/card/card.component';
-import { TECHNOLOGY_SECTIONS, TechnologyItem, TechnologyKind } from './technology.data';
+import { getProjectBySlug, TECHNOLOGY_SECTIONS } from './projects.data';
+import { TechnologyItem, TechnologyKind } from './project.model';
 
 @Component({
   selector: 'projects-technology',
@@ -24,12 +25,22 @@ export class ProjectsTechnologyComponent {
 
   activeFilter: 'all' | TechnologyKind = 'all';
 
-  /** Flat list in section order (engines → … → pipelines), or one kind when filtered. */
+  /** Flat list in section order (engines → … → pipelines), or one kind when filtered; pinned first. */
   get displayedTechnologyItems(): TechnologyItem[] {
-    if (this.activeFilter === 'all') {
-      return this.sections.flatMap(s => s.items);
+    const items =
+      this.activeFilter === 'all'
+        ? this.sections.flatMap(s => s.items)
+        : this.sections.filter(s => s.kind === this.activeFilter).flatMap(s => s.items);
+    return this.pinnedFirstStable(items);
+  }
+
+  private pinnedFirstStable(items: TechnologyItem[]): TechnologyItem[] {
+    const pinned: TechnologyItem[] = [];
+    const rest: TechnologyItem[] = [];
+    for (const item of items) {
+      (item.pinned ? pinned : rest).push(item);
     }
-    return this.sections.filter(s => s.kind === this.activeFilter).flatMap(s => s.items);
+    return [...pinned, ...rest];
   }
 
   setFilter(value: string): void {
@@ -44,5 +55,17 @@ export class ProjectsTechnologyComponent {
       pipeline: 'PIPELINE'
     };
     return labels[kind];
+  }
+
+  /** In-app project detail route when this row maps to a technology-tab project. */
+  technologyItemDetailLink(item: TechnologyItem): string[] | null {
+    const slug = item.projectSlug;
+    if (!slug) {
+      return null;
+    }
+    if (getProjectBySlug(slug)?.portfolioTab !== 'technology') {
+      return null;
+    }
+    return ['/projects', slug];
   }
 }

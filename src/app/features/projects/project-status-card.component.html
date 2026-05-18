@@ -1,5 +1,7 @@
 <a [routerLink]="link" class="status-card section-card" [attr.aria-label]="'Open project: ' + title">
   <span class="status-card__category">{{ category }}</span>
   <span class="status-card__title">{{ title }}</span>
-  <p class="status-card__summary">{{ summary }}</p>
+  @if (summary?.trim()) {
+    <p class="status-card__summary">{{ summary }}</p>
+  }
 </a>

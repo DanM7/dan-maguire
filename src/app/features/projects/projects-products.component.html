@@ -20,7 +20,7 @@
     class="project-card-link block no-underline text-left transition duration-200 hover:opacity-95"
   >
     <span *ngIf="project.pinned" class="project-card-pin" aria-hidden="true">★</span>
-    <app-card [eyebrow]="categoryEyebrow(project)" [title]="project.title" [description]="project.summary">
+    <app-card [eyebrow]="categoryEyebrow(project)" [title]="project.title" [description]="project.summary ?? ''">
       <div class="mt-6 grid gap-4" [ngClass]="{ 'lg:grid-cols-[0.65fr_0.35fr]': summaryCardPreviewSrc(project) }">
         <ng-container *ngIf="summaryCardPreviewSrc(project) as previewSrc">
           <img
@@ -43,4 +43,4 @@
   </a>
 </div>
 
-<p *ngIf="displayedProductProjects.length === 0" class="mt-10 text-slate-400">No products match this category.</p>
+<p *ngIf="displayedProductProjects.length === 0" class="mt-10 text-slate-400">No projects match this category.</p>

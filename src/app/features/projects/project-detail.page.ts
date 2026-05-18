@@ -126,6 +126,52 @@ export class ProjectDetailPageComponent implements OnInit, OnDestroy {
     return this.splitDescriptionBlocks(project.longDescription);
   }
 
+  /** Text and in-app project links for a description paragraph. */
+  descriptionParagraphSegments(
+    paragraph: string,
+    project: Project
+  ): ({ type: 'text'; value: string } | { type: 'link'; text: string; slug: string })[] {
+    const links = project.descriptionPhraseLinks ?? [];
+    if (links.length === 0) {
+      return [{ type: 'text', value: paragraph }];
+    }
+
+    let segments: ({ type: 'text'; value: string } | { type: 'link'; text: string; slug: string })[] = [
+      { type: 'text', value: paragraph }
+    ];
+
+    for (const { phrase, projectSlug } of links) {
+      const needle = phrase.trim();
+      if (!needle) {
+        continue;
+      }
+      const next: typeof segments = [];
+      for (const seg of segments) {
+        if (seg.type === 'link') {
+          next.push(seg);
+          continue;
+        }
+        let remainder = seg.value;
+        while (remainder.length > 0) {
+          const idx = remainder.indexOf(needle);
+          if (idx === -1) {
+            next.push({ type: 'text', value: remainder });
+            break;
+          }
+          const before = remainder.slice(0, idx);
+          if (before) {
+            next.push({ type: 'text', value: before });
+          }
+          next.push({ type: 'link', text: needle, slug: projectSlug });
+          remainder = remainder.slice(idx + needle.length);
+        }
+      }
+      segments = next;
+    }
+
+    return segments;
+  }
+
   postGalleryParagraphs(project: Project): string[] {
     if (!project.postGalleryLongDescription?.trim()) {
       return [];
